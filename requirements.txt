@@ -1,0 +1,9 @@
+torch
+facenet-pytorch
+opencv-python
+numpy
+scikit-learn
+sqlalchemy
+h5py
+Pillow
+screeninfo

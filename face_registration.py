@@ -7,11 +7,12 @@ from facenet_pytorch import MTCNN, InceptionResnetV1
 import torch
 from db_manager import DatabaseManager
 from datetime import date
+import os
 
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "1234"
-INSTRUCTOR_PASSWORD = ""
-STUDENT_PASSWORD = ""
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
+INSTRUCTOR_PASSWORD = os.getenv("INSTRUCTOR_PASSWORD", "")
+STUDENT_PASSWORD = os.getenv("STUDENT_PASSWORD", "")
 
 selected_role = None
 
@@ -68,7 +69,7 @@ def show_login_screen():
         username = username_entry.get()
         password = password_entry.get()
 
-        if selected_role == "admin" and username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        if selected_role == "admin" and ADMIN_PASSWORD and username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             login_win.destroy()
             open_dashboard_window()
         elif selected_role == "instructor" and password == INSTRUCTOR_PASSWORD:
